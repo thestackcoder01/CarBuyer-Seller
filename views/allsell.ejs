@@ -1,0 +1,21 @@
+<% include ./partials/header.ejs %>
+
+<link rel="stylesheet" href="../stylesheets/allsell.css">
+    <div id="container">
+        <h1>All Selling Cars</h1>
+        <div id="posts">
+            <% cars.reverse().forEach(function(car){ %>
+                <div class="post">
+                    <img src="<%= car.carimg %>" alt="some image">
+                    <h3>Model : <span><%= car.carname %></span></h3>
+                    <h3>Price : <span><%= car.carprice %></span></h3>
+                    <a id="mobno" href="<%='tel:'+ car.contact %>">call me :  <%= car.contact %></a>
+                </div>
+           <% }) %>         
+        </div>
+        <% for(var i=0; i<pages; i++){ %>
+            <a id="paginationId" href="<%='/allsell/'+ i %>"><%= i+1 %></a> 
+         <% } %>
+    </div>
+    
+<% include ./partials/footer %>

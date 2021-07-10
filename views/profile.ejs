@@ -1,0 +1,60 @@
+<% include ./partials/header.ejs  %>
+
+<link rel="stylesheet" href="../stylesheets/profile.css">
+
+  <form id="prflform" action="/uploadprfl" method="POST" enctype="multipart/form-data">
+    <input id="prflinp" type="file" name="image">
+  </form>
+
+   <div id="container">
+        <div id="dets">
+            <div id="image">
+                <img id="prflimg" src="<%= foundData.prflImage %>" alt="">
+            </div>
+            <div id="txt">
+                <h2><%= foundData.name %></h2>
+                <button id="btn">change image</button>
+            </div>
+        </div>
+        <div id="form">
+             <% if(foundCar.length == 0){ %>
+                <h2>Sell your First Car!</h2>
+              <% }else{ %>
+                <h2>Make new car selling listing.</h2>
+              <% } %>
+            <form action="/addcar" method="POST" enctype="multipart/form-data">
+                <input required type="text" placeholder="car's price" name="carprice">
+                <input required type="text" placeholder="car's name" name="carname">
+                <input required type="text" placeholder="contact" name="contact">
+                <input required type="file" name="carimg">
+                <input type="submit">
+            </form>
+        </div>
+        <div id="posts">
+              <% if(foundCar.length > 0){ %>
+                <h3>Your Previous Entries</h3>
+              <% } %>
+              
+              <% foundCar.reverse().forEach(function(sellingcar){  %>
+                <div class="post">
+                    <a id="delPost" href=<%= /removecar/ + sellingcar._id %>><i class="ri-delete-bin-6-line"></i></a>
+                    <img src="<%= sellingcar.carimg %>" alt="some image">
+                    <h3 id="val2">Model name : <span id="val"><%= sellingcar.carname %></span></h3>
+                    <h3>Car Price : <span id="val"><%= sellingcar.carprice %></span></h3>
+                    
+                </div>
+                
+              <% }) %>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('#btn').addEventListener('click', function(){
+            document.querySelector('#prflinp').click();
+        });
+
+        document.querySelector('#prflinp').addEventListener('change',function(){
+           document.querySelector('#prflform').submit();
+        })
+    </script>
+<% include ./partials/footer %>

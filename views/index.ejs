@@ -1,0 +1,50 @@
+<% include ./partials/header %>
+<link rel="stylesheet" href="../stylesheets/style.css">
+
+
+
+        <div id="container">
+            <% if(messages.error){ %>
+                <h2 style="color: rgb(48, 102, 184);"><%= messages.error %></h2>
+           <% } %>
+           <% if(loginMsg){ %>
+            <h2 style="color: rgb(48, 102, 184);"><%= loginMsg %></h2>
+            <% } %>
+            <h1>Sell/Buy your car<br><span>at really great price</span></h1>
+            <div id="form">
+                <h2>Login Here</h2>
+                <form action="/login" method="POST">
+                    <input required type="text" placeholder="username" name="username">
+                    <input  required="password" placeholder="password" name="password">
+                    <input type="submit">
+                </form>
+                <a id="ll" href="#f2"><h5 >New User?Register Here</h5></a>  
+                
+            </div>
+            <hr>
+            <div id="form">
+                <h2 id="f2">Register Here</h2>
+                
+                <form action="/reg" method="POST">
+                    <input required type="text" placeholder="name" name="name">
+                    <input required type="email" placeholder="email" name="email">
+                    <input required id="usernameinp" type="text" placeholder="username" name="username">
+                    <input required id="psw"type="password" placeholder="password" name="password">
+                    <input  id="sbtn" type="submit">
+                </form>
+
+            </div>
+            <div id="message">
+                <h3>Password must contain the following:</h3>
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+              </div>
+        </div>
+    </div>
+
+    <script src="../javascripts/script.js">
+        
+    </script>
+<% include ./partials/footer.ejs %>
